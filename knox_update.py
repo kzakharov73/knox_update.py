@@ -14,7 +14,7 @@ with open('C:\\IPA\\knox.txt', 'r') as f:
 tr_count = 0
 
 options = Options()
-# options.add_argument("--headless")  # Runs Chrome in headless mode.
+options.add_argument("--headless")  # Runs Chrome in headless mode.
 options.add_argument('--no-sandbox')  # Bypass OS security model
 options.add_argument('--disable-gpu')  # applicable to windows os only
 options.add_argument('start-maximized')
@@ -69,10 +69,12 @@ def knox_Update():
                 i += 1
                 print(i)
             driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div[6]/div[2]/span/img").click()
+            time.sleep(2)
             driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div[6]/div[3]/dl/dd[2]/button/span").click()
             wait.until(
                 Eco.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[2]/input")))
             driver.find_element(By.XPATH, "/html/body/div[6]/div/button[2]").click()
+            time.sleep(10)
             driver.find_element(By.ID, "USERID").send_keys(login)
             driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[2]/input").send_keys(password)
             driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[4]/button/span").click()
