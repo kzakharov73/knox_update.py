@@ -24,6 +24,7 @@ options.add_experimental_option("prefs", {
     "safebrowsing_for_trusted_sources_enabled": False,
     "safebrowsing.enabled": False
 })
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
 driver = webdriver.Chrome(options=options, executable_path='D:\\chromedriver.exe')
 
 
