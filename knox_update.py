@@ -118,10 +118,12 @@ def knox_Update():
             driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div[6]/div[3]/dl/dd[2]/button/span").click()
             time.sleep(7)
             mouse()
-            # wait.until(Eco.element_to_be_clickable((By.ID, "USERID")))
-            # driver.find_element(By.XPATH, "/html/body/div[6]/div/button[2]").click()
+            wait.until(Eco.element_to_be_clickable((By.ID, "USERID")))
+            driver.find_element(By.ID, "USERID").click()
+            driver.find_element(By.ID, "USERID").clear()
             driver.find_element(By.ID, "USERID").send_keys(login)
-            driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[2]/input").send_keys(password)
+            driver.find_element(By.ID, "USERPASSWORD").send_keys(password)
+            time.sleep(10)
             driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[4]/button/span").click()
             wait.until(Eco.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[1]/ul/li[4]/a")))
         except:
@@ -140,7 +142,7 @@ def knox_Update():
 
 tr_count = 0
 
-while tr_count < 3:
+while tr_count < 6:
     print(Fore.MAGENTA, 'chrome reboot =', tr_count)
     knox_Update()
 else:
