@@ -10,6 +10,8 @@ import pyfiglet
 from colorama import init, Fore, Back, Style
 from webdriver_auto_update.chrome_app_utils import ChromeAppUtils
 from webdriver_auto_update.webdriver_manager import WebDriverManager
+import win32api
+import win32con
 
 
 privet = pyfiglet.figlet_format('KNOX ROBOT')
@@ -101,12 +103,18 @@ def knox_Update():
         print(Fore.BLUE, 'try_count = ', a)
         try:
             c = 0
-            while c < 8:
+            while c < 10:
                 time.sleep(int(timeout))
+                win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY, 0)  # press
+                win32api.Sleep(5)
+                win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)  # release
                 mouse()
                 time.sleep(int(timeout))
                 driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[1]/ul/li[4]/a").click()
                 time.sleep(int(timeout))
+                win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY, 0)  # press
+                win32api.Sleep(5)
+                win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)  # release
                 mouse()
                 time.sleep(int(timeout))
                 driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[1]/ul/li[3]/a").click()
@@ -118,11 +126,17 @@ def knox_Update():
             driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div[6]/div[3]/dl/dd[2]/button/span").click()
             time.sleep(7)
             mouse()
+            win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY, 0)  # press
+            win32api.Sleep(5)
+            win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)  # release
             wait.until(Eco.element_to_be_clickable((By.ID, "USERID")))
             driver.find_element(By.ID, "USERID").click()
             driver.find_element(By.ID, "USERID").clear()
             driver.find_element(By.ID, "USERID").send_keys(login)
             driver.find_element(By.ID, "USERPASSWORD").send_keys(password)
+            win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY, 0)  # press
+            win32api.Sleep(5)
+            win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)  # release
             time.sleep(10)
             driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/fieldset/ul/li[4]/button/span").click()
             wait.until(Eco.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[1]/ul/li[4]/a")))
@@ -144,6 +158,9 @@ tr_count = 0
 
 while tr_count < 6:
     print(Fore.MAGENTA, 'chrome reboot =', tr_count)
+    win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY, 0)  # press
+    win32api.Sleep(5)
+    win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)  # release
     knox_Update()
 else:
     print(Fore.RED, 'error, try counter = ', tr_count)
